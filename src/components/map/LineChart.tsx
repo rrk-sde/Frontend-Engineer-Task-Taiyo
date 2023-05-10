@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 
+
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -12,6 +13,7 @@ import {
     Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import Loader from '../loader/Loader';
 
 
 ChartJS.register(
@@ -99,7 +101,7 @@ const LineChart: React.FC = () => {
     // }, [data]);
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <Loader />;
     }
 
     if (isError) {

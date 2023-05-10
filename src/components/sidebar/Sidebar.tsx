@@ -56,7 +56,7 @@ const Sidebar = () => {
 
                         style={navLinkStyles}
                         className="sidebar-menu-item py-2 bg-gray-600 w-full"
-                        onClick={handleMenuClick}
+                    // onClick={handleMenuClick}
                     >
                         <h1>Contact</h1>
                     </NavLink>
@@ -65,7 +65,7 @@ const Sidebar = () => {
 
                         style={navLinkStyles}
                         className="sidebar-menu-item py-2 bg-gray-600 w-full"
-                        onClick={handleMenuClick}
+                    // onClick={handleMenuClick}
                     >
                         <h1>Maps</h1>
                     </NavLink>

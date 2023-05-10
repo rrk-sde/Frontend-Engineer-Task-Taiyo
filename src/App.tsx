@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query';
 import './App.css'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import Layout from './layout/Layout'
 import ContactPage from './components/contact/ContactPage'
 import MapPage from './components/map/MapPage'
@@ -19,6 +19,7 @@ function App() {
 
           <Routes>
             <Route path='/contact' element={<ContactPage />} />
+            <Route path='/' element={<Navigate to="/contact" />} />
             <Route path='/maps' element={<MapPage />} />
           </Routes>
         </Layout>

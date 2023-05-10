@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import "leaflet/dist/leaflet.css"
 import { useQuery } from 'react-query';
 import { Icon } from 'leaflet';
+import Loader from '../loader/Loader';
 
 
 interface MapData {
@@ -66,7 +67,7 @@ const Map = () => {
 
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <Loader />
     }
 
     if (isError) {
