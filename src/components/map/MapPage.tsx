@@ -1,4 +1,4 @@
-import React from 'react'
+
 import LineChart from './LineChart'
 import Map from './Map'
 

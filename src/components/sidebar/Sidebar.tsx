@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import { FiMenu, FiX } from 'react-icons/fi';
 import { NavLink } from 'react-router-dom';

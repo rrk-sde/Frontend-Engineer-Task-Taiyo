@@ -4,7 +4,6 @@ import {
     UPDATE_CONTACT,
     DELETE_CONTACT,
     ContactActionTypes,
-    Contact,
 } from '../actions/types';
 
 const contactReducer = (state = initialContactState, action: ContactActionTypes): ContactState => {

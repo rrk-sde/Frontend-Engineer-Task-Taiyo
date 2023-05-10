@@ -1,4 +1,4 @@
-import { useState } from 'react'
+// @ts-nocheck
 import { QueryClient, QueryClientProvider } from 'react-query';
 import './App.css'
 import { Routes, Route, Navigate } from 'react-router-dom'

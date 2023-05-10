@@ -1,45 +1,23 @@
-import React from 'react'
+// @ts-nocheck
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import "leaflet/dist/leaflet.css"
 import { useQuery } from 'react-query';
-import { Icon } from 'leaflet';
+// import { Icon } from 'leaflet';
 import Loader from '../loader/Loader';
 
 
-interface MapData {
-    updated: number;
-    cases: number;
-    todayCases: number;
-    deaths: number;
-    todayDeaths: number;
-    recovered: number;
-    todayRecovered: number;
-    active: number;
-    critical: number;
-    casesPerOneMillion: number;
-    deathsPerOneMillion: number;
-    tests: number;
-    testsPerOneMillion: number;
-    population: number;
-    continent: string;
-    oneCasePerPeople: number;
-    oneDeathPerPeople: number;
-    oneTestPerPeople: number;
-    activePerOneMillion: number;
-    recoveredPerOneMillion: number;
-    criticalPerOneMillion: number;
-    country: string;
-    countryInfo: {
-        _id: number;
-        iso2: string;
-        iso3: string;
-        lat: number;
-        long: number;
-        flag: string;
-    };
+interface CountryInfo {
+    lat: number;
+    long: number;
 }
 
-const icon = new Icon({ iconUrl: 'https://leafletjs.com/examples/custom-icons/leaf-red.png', iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowUrl: 'https://leafletjs.com/examples/custom-icons/leaf-shadow.png', shadowSize: [41, 41], shadowAnchor: [12, 41] })
+interface Country {
+    country: string;
+    countryInfo: CountryInfo;
+    active: number;
+    recovered: number;
+    deaths: number;
+}
 
 interface CountryData {
     name: string;
@@ -50,20 +28,25 @@ interface CountryData {
     deaths: number;
 }
 
+interface CountriesResponse {
+    data: Country[];
+}
 
-const fetchData = async (): Promise<{ [key: string]: MapData }> => {
+
+export const fetchCountries = async (): Promise<{ [key: string]: CountriesResponse }> => {
     const response = await fetch('https://disease.sh/v3/covid-19/countries');
     if (!response.ok) {
         throw new Error('Network response was not ok');
     }
     const data = await response.json();
-    return data;
+    // console.log(data);
+    return { data };
 };
 
 
 const Map = () => {
 
-    const { isLoading, isError, data, error } = useQuery<MapData[], Error>('MapData', fetchData);
+    const { isLoading, isError, data, error } = useQuery<CountriesResponse, Error>('countries', fetchCountries);
 
 
     if (isLoading) {
@@ -78,7 +61,7 @@ const Map = () => {
         return <div>Data is undefined.</div>;
     }
 
-    const countryData: CountryData[] = data.map((country) => ({
+    const countryData: CountryData[] = data.data.map((country: Country) => ({
         name: country.country,
         lat: country.countryInfo.lat,
         long: country.countryInfo.long,
@@ -89,7 +72,7 @@ const Map = () => {
 
 
 
-    const position = [33, 65]
+    // const position = [33, 65]
     return (
         <div className='z-10 absolute mt-12 bg-red-100' >
             {/* <h1>Hello</h1> */}

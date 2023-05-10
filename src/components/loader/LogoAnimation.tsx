@@ -23,7 +23,7 @@ const LogoAnimation: React.FC = () => {
             animate="animate"
         >
             {/* Your logo SVG goes here */}
-            <img src={taiyologo} alt="" srcset="" />
+            <img src={taiyologo} alt="logoLoading" />
         </motion.div>
     );
 };
